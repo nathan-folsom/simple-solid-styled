@@ -1,3 +1,9 @@
+.logo {
+    animation: logo-spin infinite 20s linear;
+    height: 40vmin;
+    pointer-events: none;
+}
+
 @keyframes logo-spin {
     from {
         transform: rotate(0deg);
@@ -5,4 +11,10 @@
     to {
         transform: rotate(360deg);
     }
+}
+
+.subtext {
+    font-size: 12px;
+    background: none !important;
+    color: lightgrey;
 }

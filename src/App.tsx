@@ -2,7 +2,7 @@ import type { Component } from 'solid-js';
 
 import logo from './logo.svg';
 import styles from './App.module.css';
-import { cx, styled } from "./styled";
+import { classed, cx, styled } from "./styled";
 
 const AppContainer = styled("div", `text-align: center;`);
 
@@ -17,11 +17,7 @@ const Header = styled("header", `
   color: white;
 `);
 
-const Logo = styled("img", `
-  animation: ${styles["logo-spin"]} infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-`);
+const Logo = classed("img", styles.logo);
 
 const bgBlue = `background: cornflowerblue;`
 
@@ -34,6 +30,8 @@ const FancyDescription = styled(Description, `
   font-style: italic;
 `);
 
+const SubDescription = classed(Description, styles.subtext);
+
 const App: Component = () => {
   return (
     <AppContainer>
@@ -43,6 +41,7 @@ const App: Component = () => {
           Edit <code>src/App.tsx</code> and save to reload.
         </Description>
         <FancyDescription>Simple, Solid, Styled</FancyDescription>
+        <SubDescription>A minimalist styled components implementation for Solid</SubDescription>
         <Link
           href="https://github.com/solidjs/solid"
           target="_blank"
