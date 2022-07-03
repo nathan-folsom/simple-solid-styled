@@ -2,7 +2,7 @@ import type { Component } from 'solid-js';
 
 import logo from './logo.svg';
 import styles from './App.module.css';
-import { classed, cx, styled } from "./styled";
+import { classed, styled } from "./styled";
 
 const AppContainer = styled("div", `text-align: center;`);
 
@@ -19,27 +19,25 @@ const Header = styled("header", `
 
 const Logo = classed("img", styles.logo);
 
-const bgBlue = `background: cornflowerblue;`
+const Text = classed("p", "bg-blue");
 
-const Link = styled("a", cx(`color: white;`, bgBlue));
+const Link = styled(classed("a", "bg-blue"), `color: white;`);
 
-const Description = styled("p", bgBlue);
-
-const FancyDescription = styled(Description, `
+const FancyDescription = styled(Text, `
   color: deeppink;
   font-style: italic;
 `);
 
-const SubDescription = classed(Description, styles.subtext);
+const SubDescription = classed("p", styles.subtext);
 
 const App: Component = () => {
   return (
     <AppContainer>
       <Header>
         <Logo src={logo} alt="logo" />
-        <Description>
+        <Text>
           Edit <code>src/App.tsx</code> and save to reload.
-        </Description>
+        </Text>
         <FancyDescription>Simple, Solid, Styled</FancyDescription>
         <SubDescription>A minimalist styled components implementation for Solid</SubDescription>
         <Link
