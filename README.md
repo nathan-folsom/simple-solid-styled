@@ -41,4 +41,4 @@ const Text = classed("p", styles.text);
 const FancyText = styled(Text, `color: pink;`);
 ```
 
-See `/src/App.tsx` for more usage examples, and `styled.tsx` for implementation.
+See `/src/App.tsx` for more usage examples, and `/src/styled.tsx` for implementation.
