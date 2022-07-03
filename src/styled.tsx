@@ -37,16 +37,16 @@ type Classable = {
 };
 
 export function classed<T extends Component<{ class?: string }>>(
-  component: T, css: string
+  component: T, className: string
 ): T extends Component<infer P> ? Component<P> : never;
-export function classed<T extends keyof Classable>(tag: T, css: string): Component<Classable[T]>;
+export function classed<T extends keyof Classable>(tag: T, className: string): Component<Classable[T]>;
 export function classed(
-  TagOrComponent: keyof Classable | Component<{ class?: string }>, css: string
+  TagOrComponent: keyof Classable | Component<{ class?: string }>, className: string
 ): Component<{ class?: string }> {
   return props => {
     const [classProps, rest] = splitProps(props, ["class"]);
     return typeof TagOrComponent === "string"
-      ? <Dynamic {...rest} class={cx(classProps.class, css)} component={TagOrComponent}/>
-      : <TagOrComponent {...rest} class={cx(classProps.class, css)} />;
+      ? <Dynamic {...rest} class={cx(classProps.class, className)} component={TagOrComponent}/>
+      : <TagOrComponent {...rest} class={cx(classProps.class, className)} />;
   };
 }
