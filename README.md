@@ -14,7 +14,7 @@ function App() {
 ```
 
 ### `classed`
-This utility on the other hand lets us get scoped classnames from our css module classes that we declared in a `.module.css` file:
+This utility on the other hand lets us get scoped classnames from our css module classes that we declared in a `*.module.css` file:
 ```
 import { classed } from "./styled";
 import { styles } from "./.module.css";
@@ -26,17 +26,19 @@ function App() {
 }
 ```
 
-Both utilities also accept a component instead of an intrinsic element tag:
+Both utilities accept a component in addition to an intrinsic element tag:
 ```
+// const Text: Component<{ style?: string, class?: string }> = props => {...};
+
 const FancyText = styled(Text, `color: pink`);
 // or
 const FancyText = classed(Text, styles.fancy);
 ```
 
-And can also be composed together:
+And can be composed together:
 ```
 const Text = classed("p", styles.text);
 const FancyText = styled(Text, `color: pink;`);
 ```
 
-See `/src/App.tsx` for more usage examples, and `styled.tsx` for implementations.
+See `/src/App.tsx` for more usage examples, and `styled.tsx` for implementation.
