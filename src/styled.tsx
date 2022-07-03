@@ -27,3 +27,26 @@ export function styled(
       : <TagOrComponent {...rest} style={cx(styleProps.style, css)} />;
   };
 }
+
+type ClassAttribute = { class?: string };
+
+type Classable = {
+  [Tag in keyof JSX.IntrinsicElements as JSX.IntrinsicElements[Tag] extends ClassAttribute
+    ? Tag
+    : never]: JSX.IntrinsicElements[Tag];
+};
+
+export function classed<T extends Component<{ class?: string }>>(
+  component: T, css: string
+): T extends Component<infer P> ? Component<P> : never;
+export function classed<T extends keyof Classable>(tag: T, css: string): Component<Classable[T]>;
+export function classed(
+  TagOrComponent: keyof Classable | Component<{ class?: string }>, css: string
+): Component<{ class?: string }> {
+  return props => {
+    const [classProps, rest] = splitProps(props, ["class"]);
+    return typeof TagOrComponent === "string"
+      ? <Dynamic {...rest} class={cx(classProps.class, css)} component={TagOrComponent}/>
+      : <TagOrComponent {...rest} class={cx(classProps.class, css)} />;
+  };
+}
